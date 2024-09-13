@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="TikTok Neobrutalist Modal (HTML Dialog)"
+    />
+    <meta
+      name="keywords"
+      content="HTML, CSS, JavaScript, TikTok, Neobrutalist, Modal, Dialog"
+    />
+    <meta name="author" content="Ifiora Timothy" />
+    <!-- add my icon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <!-- add the meta image that shows when i share this video -->
+    <meta property="og:image" content="meta-image.png" />
+    <title>TikTok Neobrutalist Modal (HTML Dialog)</title>
+    <style>
+      body {
+        font-family: "Arial Black", sans-serif;
+        background-color: #121212;
+        color: #fff;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .container {
+        width: 100%;
+        max-width: 400px;
+        height: 80vh;
+        background-color: #ff3e3e;
+        border: 8px solid #fff;
+        box-shadow: 15px 15px 0 #4a4a4a;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+      header {
+        background-color: #121212;
+        padding: 20px;
+        text-align: center;
+      }
+      h1 {
+        margin: 0;
+        font-size: 2em;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+      main {
+        flex-grow: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
+      .btn {
+        background-color: #fff;
+        color: #121212;
+        border: 4px solid #121212;
+        padding: 15px 30px;
+        font-size: 1.2em;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        font-weight: bold;
+      }
+      .btn:hover {
+        background-color: #121212;
+        color: #fff;
+        transform: translateY(-5px);
+        box-shadow: 0 5px 0 #fff;
+      }
+      dialog {
+        background-color: #00ff00;
+        border: 8px solid #121212;
+        box-shadow: 15px 15px 0 #4a4a4a;
+        padding: 20px;
+        max-width: 80%;
+        text-align: center;
+        color: #121212;
+      }
+      dialog::backdrop {
+        background-color: rgba(0, 0, 0, 0.8);
+      }
+      .close-btn {
+        background-color: #121212;
+        color: #fff;
+        margin-top: 20px;
+      }
+      @keyframes shake {
+        0% {
+          transform: translateX(0);
+        }
+        25% {
+          transform: translateX(-5px);
+        }
+        50% {
+          transform: translateX(5px);
+        }
+        75% {
+          transform: translateX(-5px);
+        }
+        100% {
+          transform: translateX(0);
+        }
+      }
+      .shake {
+        animation: shake 0.5s ease-in-out;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Neobrutalist Modal</h1>
+      </header>
+      <main>
+        <button class="btn" id="openModal">Open Modal</button>
+      </main>
+    </div>
+
+    <dialog id="modal">
+      <h2>Boom! Modal Open</h2>
+      <p>This is a neobrutalist modal using the HTML dialog element!</p>
+      <button class="btn close-btn" id="closeModal">Close</button>
+    </dialog>
+
+    <script>
+      const [modal, openBtn, closeBtn, container] = [
+        "#modal",
+        "#openModal",
+        "#closeModal",
+        ".container",
+      ].map((selector) => document.querySelector(selector));
+
+      openBtn.addEventListener("click", () => {
+        modal.showModal();
+        container.classList.add("shake");
+      });
+
+      closeBtn.addEventListener("click", () => {
+        modal.close();
+      });
+
+      container.addEventListener("animationend", () => {
+        container.classList.remove("shake");
+      });
+    </script>
+  </body>
+</html>
